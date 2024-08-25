@@ -10,6 +10,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.8s ease-in-out;
+  overflow-y: auto; /* Permitir scroll si el contenido excede el alto disponible */
 
   h1 {
     font-size: 2rem;
@@ -71,5 +72,51 @@
     font-size: 1.5rem;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
+  }
+}
+
+@media (max-width: 500px) {
+  .characters {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
+
+  .character {
+    min-width: 100px;
+    padding: 10px;
+  }
+
+  .character img {
+    width: 60px;
+    height: 60px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 0.875rem;
+    padding: 5px 10px;
+  }
+}
+
+@media (min-width: 3000px) {
+  .character-selector {
+    max-width: 50%;
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    .character img {
+      width: 150px;
+      height: 150px;
+    }
+
+    button {
+      font-size: 1.5rem;
+      padding: 15px 30px;
+    }
   }
 }

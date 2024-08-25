@@ -10,6 +10,38 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
+@media (max-width: 320px) {
+  .character-selector {
+    max-width: 100%;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .character img {
+      width: 70px;
+      height: 70px;
+    }
+
+    button {
+      font-size: 0.875rem;
+      padding: 8px 16px;
+    }
+  }
+
+  .chat-container {
+    padding: 10px;
+  }
+
+  .chat-message p {
+    max-width: 100%;
+  }
+
+  .answers button {
+    font-size: 14px;
+  }
+}
+
 @media (min-width: 3000px) {
   .character-selector {
     max-width: 50%;
