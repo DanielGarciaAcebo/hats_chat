@@ -1,4 +1,4 @@
-import { Scores, Answer } from '../store/interfaces';
+import { Scores, Character } from '../store/interfaces';
 import {ref} from "vue";
 
 const totalScores = ref<Scores>({
@@ -17,17 +17,6 @@ export function addScores(scores: Scores): void {
     totalScores.value.s += scores.s;
 }
 
-export function getTotalScores(): Scores {
-    return totalScores.value;
-}
-
-
-export function resetScores(): void {
-    totalScores.value.g = 0
-    totalScores.value.r = 0
-    totalScores.value.h = 0
-    totalScores.value.s = 0
-}
 export function getHouse(): string {
     const scores = totalScores.value;
     let maxScore = -1;
@@ -42,3 +31,11 @@ export function getHouse(): string {
 
     return house;
 }
+
+export const characters = ref<Character[]>([
+    { name: 'Pj1', image: '/src/assets/images/mages/Pj1.webp' },
+    { name: 'Pj2', image: '/src/assets/images/mages/Pj2.webp' },
+    { name: 'Pj3', image: '/src/assets/images/mages/Pj3.webp' },
+    { name: 'Pj4', image: '/src/assets/images/mages/Pj4.webp' },
+    { name: 'Pj5', image: '/src/assets/images/mages/Pj5.webp' },
+]);

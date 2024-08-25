@@ -1,39 +1,45 @@
 <template>
   <div class="chat-container">
-
-   <div class="chat-window" ref="chatWindow">
-     <h1>Hello, {{ userName }}!</h1>
-        <div v-for="(question, index) in answeredQuestions" :key="index" class="chat-message bot" >
-          <p >{{ question.title }}</p>
-          <p class="answer user">{{ answersSelected[index] }}</p>
+    <div class="chat-window" ref="chatWindow">
+      <div v-for="(question, index) in answeredQuestions" :key="index" class="chat-message bot" >
+        <img src="/src/assets/images/hat/hat.webp" alt="Bot Profile" class="profile-pic bot-pic">
+        <p>{{ question.title }}</p>
+        <img :src="pj.value.image" alt="User Profile" class="profile-pic user-pic">
+        <p class="answer user">{{ answersSelected[index] }}</p>
+      </div>
+      <div v-if="currentQuestionIndex < questions.length" class="chat-message bot">
+        <img src="/src/assets/images/hat/hat.webp" alt="Bot Profile" class="profile-pic bot-pic">
+        <p ref="questionText"></p>
+        <div class="answers">
+          <button v-for="(answer, answerIndex) in questions[currentQuestionIndex].answers"
+                  :key="answerIndex"
+                  :disabled="!allButtonsShown"
+                  v-show="showButtons[answerIndex]"
+                  @click="handleSelectAnswer(answer)">
+            {{ answer.title }}
+          </button>
         </div>
-        <div v-if="currentQuestionIndex < questions.length" class="chat-message bot">
-          <p>{{ questions[currentQuestionIndex].title }}</p>
-          <div class="answers">
-            <button v-for="(answer, answerIndex) in questions[currentQuestionIndex].answers"
-                    :key="answerIndex"
-                    @click="handleSelectAnswer(answer)">
-              {{ answer.title }}
-            </button>
-          </div>
-        </div>
-        <div v-else class="chat-message bot">
-          <h3>House with the most points: {{ winningHouse }}</h3>
+      </div>
+      <div v-else class="house-winner-container">
+        <div class="house-winner-pic">
+          <img :src="winningHouse.img" :alt="winningHouse.value" class="house-img">
           <button @click="finishQuiz">Finish Quiz</button>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
-
 <script lang="ts" setup>
-import { ref, onMounted, onUpdated } from 'vue';
+import { ref, onMounted, onUpdated, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 
+import {typingEffect} from "@/components/typing/typingEffect";
 import router from '@/router/index';
 import { loadJSONData } from "@/components/questionStractor/questionList";
-import { Question, Answer } from "@/components/store/interfaces";
+import { Question, Answer, Character } from "@/components/store/interfaces";
 import { addScores, getHouse } from "@/components/scores/scores";
+import { characters} from "@/components/scores/scores";
 
 
 const questions = ref<Question[]>([]);
@@ -41,28 +47,52 @@ const answeredQuestions = ref<Question[]>([]);
 const answersSelected = ref<string[]>([]);
 const currentQuestionIndex = ref(0);
 const winningHouse = ref('');
-
+const pj = ref<Character>
+const questionText = ref<HTMLElement | null>(null);
 const route = useRoute();
 const chatWindow = ref<HTMLElement | null>(null);
+const showButtons = ref<boolean[]>([]);
+let finalQuestion = false
+const allButtonsShown = ref(false)
 
 const userName = route.params.name;
-
 const selectedCharacter = route.params.character;
 
 if (!userName || userName.length === 0 || !selectedCharacter || selectedCharacter.length === 0) {
   router.push({ name: 'Login' });
 } else {
+  buildCharacter(selectedCharacter);
   loadQuestions();
 }
 
 
 onMounted(() => {
   scrollToBottom();
+  watchEffect(() => {
+    typing()
+  });
 });
 
 onUpdated(() => {
   scrollToBottom();
 });
+
+function typing() {
+  if (questions.value.length > 0 && questionText.value && !finalQuestion ) {
+    showButtons.value = new Array(questions.value[currentQuestionIndex.value].answers.length).fill(false);
+    allButtonsShown.value = false;
+    typingEffect(questionText.value, questions.value[currentQuestionIndex.value].title, 20, () => {
+      questions.value[currentQuestionIndex.value].answers.forEach((_, index) => {
+        setTimeout(() => {
+          showButtons.value[index] = true;
+          if (index === questions.value[currentQuestionIndex.value].answers.length - 1) {
+            allButtonsShown.value = true;
+          }
+        }, index * 100);
+      });
+    });
+  }
+}
 
 function loadQuestions() {
   const url = "/sorting_hat.json";
@@ -86,22 +116,23 @@ function handleSelectAnswer(answer: Answer) {
   currentQuestionIndex.value++;
 
   if (currentQuestionIndex.value >= questions.value.length) {
+    finalQuestion = true
     const winner = getHouse();
     switch (winner) {
       case "g":
-        winningHouse.value = "Gryffindor";
+        winningHouse.value = { value: "Gryffindor", img: "/src/assets/images/houses/Gryffindor.webp" };
         break;
       case "r":
-        winningHouse.value = "Ravenclaw";
+        winningHouse.value = { value: "Ravenclaw", img: "/src/assets/images/houses/Ravenclaw.webp" };
         break;
       case "h":
-        winningHouse.value = "Hufflepuff";
+        winningHouse.value = { value: "Hufflepuff", img: "/src/assets/images/houses/Hufflepuff.webp" };
         break;
       case "s":
-        winningHouse.value = "Slytherin";
+        winningHouse.value = { value: "Slytherin", img: "/src/assets/images/houses/Slytherin.webp" };
         break;
       default:
-        winningHouse.value = "";
+        winningHouse.value = { value: "", img: "" };
         break;
     }
   }
@@ -110,6 +141,17 @@ function handleSelectAnswer(answer: Answer) {
 function scrollToBottom() {
   if (chatWindow.value) {
     chatWindow.value.scrollTop = chatWindow.value.scrollHeight;
+  }
+}
+function buildCharacter(characterName: string) {
+  const character = characters.value.find(char => char.name.toLowerCase() === characterName.toLowerCase());
+  if (character) {
+    pj.value = character;
+  } else {
+    pj.value = {
+      name: 'Default',
+      image: '/src/assets/images/mages/Pdefault.webp'
+    };
   }
 }
 </script>

@@ -17,13 +17,7 @@ export interface Question {
     answers: Answer[];
 }
 
-export interface AswerIndex{
-    aswer: string;
-    index: number;
-
-}
-
-export interface User{
-    username: string;
-    character: string;
+export interface Character {
+    name: string;
+    image: string;
 }

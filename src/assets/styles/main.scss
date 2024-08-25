@@ -1,0 +1,55 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url('/src/assets/images/background/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+}
+
+@media (min-width: 3000px) {
+  .character-selector {
+    max-width: 50%;
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    .character img {
+      width: 150px;
+      height: 150px;
+    }
+
+    button {
+      font-size: 1.5rem;
+      padding: 15px 30px;
+    }
+  }
+
+  .chat-container {
+    max-width: 50%;
+  }
+
+  .chat-message p {
+    max-width: 100%;
+  }
+
+  .answers button {
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  input {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 1.5rem;
+  }
+}
