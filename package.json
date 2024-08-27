@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite --base=/hats_chat build && cp -R ./src/assets/images ./dist/assets",
+    "build": "vite --base=/hats_chat build && npm run copy-images",
+    "copy-images": "cp -R src/assets/images dist/assets/images",
     "preview": "vite preview"
   },
   "dependencies": {
