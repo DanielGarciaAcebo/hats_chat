@@ -3,9 +3,9 @@
     "./src/**/*"
   ],
   "compilerOptions": {
-    "baseUrl": "hats_chat",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./hats_chat/src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "exclude": ["node_modules", "dist"]
