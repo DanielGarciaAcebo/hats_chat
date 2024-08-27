@@ -1,5 +1,5 @@
 const getBaseUrl = () => {
-    return  '/';
+    return  '/hats_chat';
 };
 
 export const BASE_URL = getBaseUrl();
