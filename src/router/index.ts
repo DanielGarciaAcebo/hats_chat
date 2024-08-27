@@ -9,22 +9,22 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
-            path: '/',
+            path: '/hats_chat',
             name: "Login",
             component: login,
         },
         {
-            path: '/character/:name',
+            path: '/hats_chat/character/:name',
             name: 'Character',
             component: CharacterSelector,
         },
         {
-            path: '/chat/:name/:character',
+            path: '/hats_chat/chat/:name/:character',
             name: 'chat',
             component: Chat,
         },
         {
-            path: '/:pathMatch(.*)*',
+            path: '/hats_chat:pathMatch(.*)*',
             redirect: '/',
         },
     ],

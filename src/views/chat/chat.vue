@@ -95,7 +95,7 @@ function typing() {
 }
 
 function loadQuestions() {
-  const url = "/sorting_hat.json";
+  const url = "@/assets/data/sorting_hat.json";
   loadJSONData(url)
       .then((message) => {
         questions.value = message;
