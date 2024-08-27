@@ -120,16 +120,16 @@ function handleSelectAnswer(answer: Answer) {
     const winner = getHouse();
     switch (winner) {
       case "g":
-        winningHouse.value = { value: "Gryffindor", img: "/src/assets/images/houses/Gryffindor.webp" };
+        winningHouse.value = { value: "Gryffindor", img: "/hats_chat/src/assets/images/houses/Gryffindor.webp" };
         break;
       case "r":
-        winningHouse.value = { value: "Ravenclaw", img: "/src/assets/images/houses/Ravenclaw.webp" };
+        winningHouse.value = { value: "Ravenclaw", img: "/hats_chat/src/assets/images/houses/Ravenclaw.webp" };
         break;
       case "h":
-        winningHouse.value = { value: "Hufflepuff", img: "/src/assets/images/houses/Hufflepuff.webp" };
+        winningHouse.value = { value: "Hufflepuff", img: "/hats_chat/src/assets/images/houses/Hufflepuff.webp" };
         break;
       case "s":
-        winningHouse.value = { value: "Slytherin", img: "/src/assets/images/houses/Slytherin.webp" };
+        winningHouse.value = { value: "Slytherin", img: "/hats_chat/src/assets/images/houses/Slytherin.webp" };
         break;
       default:
         winningHouse.value = { value: "", img: "" };
@@ -150,7 +150,7 @@ function buildCharacter(characterName: string) {
   } else {
     pj.value = {
       name: 'Default',
-      image: '/src/assets/images/mages/Pdefault.webp'
+      image: '/hats_chat/src/assets/images/mages/Pdefault.webp'
     };
   }
 }
