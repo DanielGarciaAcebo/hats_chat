@@ -5,7 +5,7 @@
   "compilerOptions": {
     "baseUrl": "hats_chat",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./hats_chat/src/*"]
     }
   },
   "exclude": ["node_modules", "dist"]
