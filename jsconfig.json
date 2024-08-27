@@ -3,7 +3,7 @@
     "./src/**/*"
   ],
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "hats_chat",
     "paths": {
       "@/*": ["./src/*"]
     }
