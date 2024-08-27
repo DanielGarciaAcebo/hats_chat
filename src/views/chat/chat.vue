@@ -150,7 +150,7 @@ function buildCharacter(characterName: string) {
   } else {
     pj.value = {
       name: 'Default',
-      image: '/hats_chat/src/assets/images/mages/Pdefault.webp'
+      image: 'hats_chat/src/assets/images/mages/Pdefault.webp'
     };
   }
 }
