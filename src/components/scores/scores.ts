@@ -33,9 +33,9 @@ export function getHouse(): string {
 }
 
 export const characters = ref<Character[]>([
-    { name: 'Pj1', image: '../../assets/images/mages/Pj1.webp' },
-    { name: 'Pj2', image: '../../assets/images/mages/Pj2.webp' },
-    { name: 'Pj3', image: '../../assets/images/mages/Pj3.webp' },
-    { name: 'Pj4', image: '../../assets/images/mages/Pj4.webp' },
-    { name: 'Pj5', image: '../../assets/images/mages/Pj5.webp' },
+    { name: 'Pj1', image: 'https://i.imgur.com/YCUHvGh.png' },
+    { name: 'Pj2', image: 'https://i.imgur.com/sfj7SEn.png' },
+    { name: 'Pj3', image: 'https://i.imgur.com/XaJ4S4X.png' },
+    { name: 'Pj4', image: 'https://i.imgur.com/9LyikPO.png' },
+    { name: 'Pj5', image: 'https://i.imgur.com/7MGVPDA.png' },
 ]);

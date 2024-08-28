@@ -2,13 +2,13 @@
   <div class="chat-container">
     <div class="chat-window" ref="chatWindow">
       <div v-for="(question, index) in answeredQuestions" :key="index" class="chat-message bot" >
-        <img src="/src/assets/images/hat/hat.webp" alt="Bot Profile" class="profile-pic bot-pic">
+        <img src="/src/assets/images/hat/hat.jpg" alt="Bot Profile" class="profile-pic bot-pic">
         <p>{{ question.title }}</p>
         <img :src="pj.value.image" alt="User Profile" class="profile-pic user-pic">
         <p class="answer user">{{ answersSelected[index] }}</p>
       </div>
       <div v-if="currentQuestionIndex < questions.length" class="chat-message bot">
-        <img src="/src/assets/images/hat/hat.webp" alt="Bot Profile" class="profile-pic bot-pic">
+        <img src="/src/assets/images/hat/hat.jpg" alt="Bot Profile" class="profile-pic bot-pic">
         <p ref="questionText"></p>
         <div class="answers">
           <button v-for="(answer, answerIndex) in questions[currentQuestionIndex].answers"
@@ -95,7 +95,7 @@ function typing() {
 }
 
 function loadQuestions() {
-  const url = "@/assets/data/sorting_hat.json";
+  const url = "https://gist.githubusercontent.com/Xowap/b01fbce0c23971e23ab28427c09f92b3/raw/ad6399bd659679ff1f3209c2549a359d9cb744fd/sorting_hat.json";
   loadJSONData(url)
       .then((message) => {
         questions.value = message;
@@ -120,16 +120,16 @@ function handleSelectAnswer(answer: Answer) {
     const winner = getHouse();
     switch (winner) {
       case "g":
-        winningHouse.value = { value: "Gryffindor", img: "/hats_chat/src/assets/images/houses/Gryffindor.webp" };
+        winningHouse.value = { value: "Gryffindor", img: "https://i.imgur.com/IU6Uy2n.png" };
         break;
       case "r":
-        winningHouse.value = { value: "Ravenclaw", img: "/hats_chat/src/assets/images/houses/Ravenclaw.webp" };
+        winningHouse.value = { value: "Ravenclaw", img: "https://i.imgur.com/kggGFMS.png" };
         break;
       case "h":
-        winningHouse.value = { value: "Hufflepuff", img: "/hats_chat/src/assets/images/houses/Hufflepuff.webp" };
+        winningHouse.value = { value: "Hufflepuff", img: "https://i.imgur.com/lcSZUOf.png" };
         break;
       case "s":
-        winningHouse.value = { value: "Slytherin", img: "/hats_chat/src/assets/images/houses/Slytherin.webp" };
+        winningHouse.value = { value: "Slytherin", img: "https://i.imgur.com/xeXvVnx.png" };
         break;
       default:
         winningHouse.value = { value: "", img: "" };
@@ -150,7 +150,7 @@ function buildCharacter(characterName: string) {
   } else {
     pj.value = {
       name: 'Default',
-      image: 'hats_chat/src/assets/images/mages/Pdefault.webp'
+      image: 'https://i.imgur.com/6Qn3qCy.png'
     };
   }
 }
