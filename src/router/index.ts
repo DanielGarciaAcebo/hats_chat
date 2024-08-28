@@ -24,8 +24,8 @@ const router = createRouter({
             component: Chat,
         },
         {
-            path: '/hats_chat:pathMatch(.*)*',
-            redirect: '/',
+            path: '/:pathMatch(.*)*',
+            redirect: '/hats_chat',
         },
     ],
 });
